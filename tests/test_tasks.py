@@ -14,7 +14,8 @@ from crl.devutils.tasks import (
     tag_setup_version,
     create_index,
     delete_index,
-    create_docs)
+    create_docs,
+    create_robotdocs)
 from crl.devutils.runner import Failure, Result
 from crl.devutils.versionhandler import (
     VersionHandler,
@@ -390,6 +391,16 @@ def test_create_docs(mock_create_doccreator, verbose):
         verbose=verbose,
         robotdocs_root_folders='robotdocs')
     assert mock_create_doccreator.handler.create.call_count == 1
+
+
+@pytest.mark.parametrize('verbose', [True, False])
+def test_create_robotdocs(mock_create_doccreator, verbose):
+    create_robotdocs(verbose=verbose, robotdocs_root_folders='robotdocs')
+
+    mock_create_doccreator.create.assert_called_once_with(
+        verbose=verbose,
+        robotdocs_root_folders='robotdocs')
+    assert mock_create_doccreator.handler.create_robotdocs.call_count == 1
 
 
 @pytest.mark.parametrize('verbose', [True, False])
