@@ -1,0 +1,14 @@
+*.pyc
+*.swp
+*.swo
+dist/*
+src/crl.devutils.egg-info/*
+.cache/
+.coverage
+.tox/
+build/
+build_dir/
+coverage.xml
+junit.xml
+src/crl_devutils.egg-info/
+.pytest_cache/*
