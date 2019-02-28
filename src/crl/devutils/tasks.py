@@ -406,12 +406,11 @@ def create_docs(robotdocs_root_folders='robotdocs', verbose=False):
     }
 
     Robotdocsconf.py's output_file will be the name of the generated
-    'sphinxdocs/.........rst' file. Good practice to name it so that library's
-    identification is easy. If output_file is missing then robotdocs.rst will
-    be the file name.
-    Robotdocsconf.py's module_name will be written to rst file header. Header
-    text will be: 'Robot Framework Test Libraries' if the module name is
-    missing.
+    'sphinxdocs/.........rst' file. A good practice is to name it so that
+    library's identification is easy. If output_file is missing then
+    robotdocs.rst will be the file name.  Robotdocsconf.py's module_name will
+    be written to rst file header. Header text will be: 'Robot Framework Test
+    Libraries' if the module name is missing.
 
     Sphinx documentation is generated according to 'sphinxdocs/conf.py'.
 
@@ -426,6 +425,64 @@ def create_docs(robotdocs_root_folders='robotdocs', verbose=False):
     """
     create_doccreator(verbose=verbose,
                       robotdocs_root_folders=robotdocs_root_folders).create()
+
+
+@task
+def create_robotdocs(robotdocs_root_folders='robotdocs', verbose=False):
+    """ Create only Robot Framework ReST documentation.
+
+    If 'robotdocsconf.py' exists in root folders then Robot
+    Framework test libraries and resource files documentation
+    is generated and integrated with Sphinx documentation.
+    'robotdocsconf.py' is searched from robotdocs_root_folders
+     recursively.
+
+    Example 1 'robotdocsconf.py' for python library documentation:
+
+    module_name = "RunnerExecutor Libraries"
+    output_file = "RunnerExecutor.rst"
+
+    robotdocs = {
+    'RunnerExecutor.remoterunnerexecutor.RemoteRunnerExecutor': {
+        'args': ['None', 'None', 'False'],
+        'docformat': 'robot',
+        'synopsis': ('Command executor in the remote target shell.')},
+    'RunnerExecutor.remoterunnerexecutor.SftpTransfer': {
+        'args': ['False'],
+        'docformat': 'robot',
+        'synopsis': ('Command executor in the remote target shell.')}
+
+    Example 2 'robotdocsconf.py' for robot resource file documentation:
+    module_name = "Deployment Helpers"
+    output_file = "Framework_deployment.rst"
+
+    robotdocs = {
+    'resources/framework/deployment/_deployment_helper.robot': {
+        'docformat': 'robot'
+        }
+    }
+
+    Robotdocsconf.py's output_file will be the name of the generated
+    'sphinxdocs/.........rst' file. A good practice is to name it so that
+    library's identification is easy. If output_file is missing then
+    robotdocs.rst will be the file name.  Robotdocsconf.py's module_name will
+    be written to rst file header. Header text will be: 'Robot Framework Test
+    Libraries' if the module name is missing.
+
+    Sphinx documentation is generated according to 'sphinxdocs/conf.py'.
+
+    Args:
+        robotdocs_root_folders: folders list with relative or
+        absolute path separated by ':',
+        robotdocsconf.py is searched from these root folders recursively
+        verbose: Display task execution in more detail.
+
+    Example:
+        crl create_robotdocs -r library_root_folder1:library_root_folder2 -v
+    """
+    create_doccreator(
+        verbose=verbose,
+        robotdocs_root_folders=robotdocs_root_folders).create_robotdocs()
 
 
 @contextmanager

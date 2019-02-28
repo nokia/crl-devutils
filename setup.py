@@ -35,7 +35,6 @@ setup(
                       'robotframework',
                       'virtualenvrunner',
                       'virtualenv==16.3.0',
-                      'crl.repo',
                       'configparser'],
     long_description=read('README.rst'),
     license='BSD 3-Clause',
