@@ -99,15 +99,14 @@ class MockExecFileWithMockFile(object):
         self._request.addfinalizer(self.mock_file.stop)
 
     def _setup_execfile_mock(self):
-
-        def mock_execfile_with_exec(filename, namespace):
-            exec(self.mock_file.content, namespace)
-
         epatch = mock.patch(
             'crl.devutils.versionhandler.utils.execfile',
-            mock_execfile_with_exec)
+            self._mock_execfile_with_exec)
         epatch.start()
         self._request.addfinalizer(epatch.stop)
+
+    def _mock_execfile_with_exec(self, filename, namespace):
+        exec(self.mock_file.content, namespace)
 
 
 @pytest.fixture(scope='function')
