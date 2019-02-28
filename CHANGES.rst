@@ -3,6 +3,11 @@
 CHANGES
 =======
 
+1.2.1
+-----
+
+ - Correct syntax error in mock_exec_file_with_exec
+
 1.2
 ---
 
