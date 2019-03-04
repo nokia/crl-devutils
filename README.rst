@@ -7,6 +7,15 @@
 Guide for developing Common Robot Libraries (CRL) via crl.devutils
 ##################################################################
 
+
+Documentation
+=============
+
+Documentation for crl.devutils can be found from `Read The Docs`_.
+
+.. _Read The Docs: http://crl-devutils.readthedocs.io/
+
+
 Setup
 =====
 
