@@ -23,7 +23,7 @@ following figure:
          testing [label="5. Library testing"];
          node [shape=box, color=wheat];
          review [label="6. Review"];
-         merge [label="7. Merge"];
+         merge [label="7. Reabse and merge"];
          newversion [label="8. Is version\nupdated?", color=lightcoral, shape=diamond];
          node [shape=box, color=lightcoral];
          tag [label="9. Tag release version"];
@@ -88,11 +88,12 @@ library when applying the change into test automation frameworks.
 
 GitHub code review process is used for discussion and correction of the change.
 
-7. Merge
---------
+7. Rebase and Merge
+-------------------
 
-Reviewer or the author of the repository should merge the pull request when all
-tests are passing and reviewers have voted the change to be approved.
+Reviewer or the author of the repository should rebase and merge the pull
+request when all tests are passing and reviewers have voted the change to be
+approved.
 
 8. Is version updated?
 ----------------------
