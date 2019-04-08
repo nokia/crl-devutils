@@ -13,7 +13,7 @@ Documentation
 
 Documentation for crl.devutils can be found from `Read The Docs`_.
 
-.. _Read The Docs: http://crl-devutils.readthedocs.io/
+.. _Read the Docs: http://crl-devutils.readthedocs.io/
 
 
 Setup
@@ -208,6 +208,70 @@ should:
 
         html_theme_options = {'page_width': '90%'}
 
+Libraries using crl.devutils process
+====================================
+
+Libraries providing Robot Framework test libraries
+--------------------------------------------------
+
+======================== ================================================================
+Library                  Description
+======================== ================================================================
+crl-interactivesessions_ Remote command and file management via pexpect
+------------------------ ----------------------------------------------------------------
+crl-remotescript_        Remote command and file management via paramiko and trilead-ssh
+------------------------ ----------------------------------------------------------------
+crl-remotesession_       Wrapper of crl-interactivesessions_ and crl-remotescript_
+======================== ================================================================
+
+.. _crl-interactivesessions: https://github.com/nokia/crl-interactivesessions
+.. _crl-remotescript: https://github.com/nokia/crl-remotescript
+.. _crl-remotesession: https://github.com/nokia/crl-remotesession
+
+Robot Framework robot command wrappers
+--------------------------------------
+
+======================== ================================================================
+Library                  Description
+======================== ================================================================
+crl-rfcli_               Python path setter and parser of test target file
+------------------------ ----------------------------------------------------------------
+crl-threadverify_        Robot run verifier for hanging threads
+======================== ================================================================
+
+.. _crl-rfcli: https://github.com/nokia/crl-rfcli
+.. _crl-threadverify: https://github.com/nokia/crl-threadverify
+
+Development libraries
+----------------------
+
+======================== ================================================================
+Library                  Description
+======================== ================================================================
+crl-devutils_            Development tools for CRL
+------------------------ ----------------------------------------------------------------
+crl-examplelib_          Example library template for CRL
+======================== ================================================================
+
+.. _crl-devutils: https://github.com/nokia/crl-devutils
+.. _crl-examplelib: https://github.com/nokia/crl-examplelib
+
+Generic helper libraries
+------------------------
+
+======================== ================================================================
+Library                  Description
+======================== ================================================================
+fixtureresources_        Pytest fixtures
+------------------------ ----------------------------------------------------------------
+sphinx-invoke_           Sphinx extension for invoke tasks
+------------------------ ----------------------------------------------------------------
+virtualenvrunner_        Python Virtualenv creator and command executor
+======================== ================================================================
+
+.. _fixtureresources: https://github.com/nokia/fixtureresources
+.. _sphinx-invoke: https://github.com/nokia/sphinx-invoke
+.. _virtualenvrunner: https://github.com/nokia/virtualenvrunner
 
 Useful Links
 ============
@@ -217,3 +281,18 @@ Useful Links
 
 .. _`Configure Devpi`: https://doc.devpi.net
 .. _`Create New CRL Library`: https://github.com/nokia/cookiecutter-crl-template
+
+
+Contributing
+============
+
+Please see contributing_ for development and contribution practices.
+
+The code_ and the issues_ are hosted on GitHub.
+
+The project is licensed under BSD-3-Clause_.
+
+.. _contributing: https://github.com/nokia/crl-devutils/blob/master/CONTRIBUTING.rst
+.. _code: https://github.com/nokia/crl-devutils
+.. _issues: https://github.com/nokia/crl-devutils/issues
+.. _BSD-3-Clause:  https://github.com/nokia/crl-devutils/blob/master/LICENSE
