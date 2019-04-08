@@ -3,6 +3,11 @@
 CHANGES
 =======
 
+1.2.3
+-----
+
+ - Add contribution guide and list of libraries developed by crl.devutils
+
 1.2.2
 -----
 
