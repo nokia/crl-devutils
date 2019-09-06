@@ -60,7 +60,7 @@ def tmpemptychange(tmpdir):
 def mock_read(request):
     return create_mpatch(mock.patch(
         'crl.devutils.changehandler.ChangeHandler._read'),
-                         request)
+        request)
 
 
 @pytest.fixture(scope='function')

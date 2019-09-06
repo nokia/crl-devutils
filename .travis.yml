@@ -1,6 +1,45 @@
+# dist: xenial
+# language: python
+# python:
+#   - "2.7"
+#   - "3.6"
+#   - "3.7"
+# install:
+#   - pip install tox tox-travis
+# script: tox
 language: python
-python:
-  - "3.6"
+# python:
+#     - "2.7"
+#     - "3.6"
+#     - "3.7"
+# env:
+#     - thread="py37"
+#     - thread="pylint3"
+#     - thread="docs"
+#     - thread="py36"
+#     - thread="py27"
+#     - thread="pylint"
+matrix:
+    include:
+        - name: "python_pylint3"
+          python: 3.7
+          env: thread="pylint3"
+        - name: "python37"
+          python: 3.7
+          env: thread="py37"
+        - name: "python_docs"
+          python: 3.7
+          env: thread="docs"
+        - name: "python36"
+          python: 3.6
+          env: thread="py35"
+        - name: "python27"
+          python: 2.7
+          env: thread="py27"
+        - name: "python_pylint"
+          python: 2.7
+          env: thread="pylint"
 install:
-  - pip install tox
+    - pip install tox tox-travis
 script: tox
+

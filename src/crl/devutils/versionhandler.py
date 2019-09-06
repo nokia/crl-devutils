@@ -182,11 +182,10 @@ class VersionHandler(object):
         vslen = len(vsf)
         if vslen == 0:
             raise VersionFileNotFound()
-        elif vslen == 1:
+        if vslen == 1:
             return vsf[0]
-        else:
-            raise MultipleVersionFilesFound('Candidates are: {vsf}.'.format(
-                vsf=vsf))
+        raise MultipleVersionFilesFound('Candidates are: {vsf}.'.format(
+            vsf=vsf))
 
     def _get_all_existing_version_files(self):
         return [v for v in self._get_all_version_files() if os.path.isfile(v)]
@@ -202,8 +201,7 @@ class VersionHandler(object):
         vfile = self._get_version_file_for_subdir(subdir)
         if os.path.isfile(vfile):
             return vfile
-        else:
-            raise VersionFileNotFound()
+        raise VersionFileNotFound()
 
     def _get_version_file_for_subdir(self, subdir):
         return os.path.abspath(
