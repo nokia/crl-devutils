@@ -201,7 +201,7 @@ def mock_os_path_isdir_sphinxdocs(mock_os_path_isdir_no_sphinxdocs):
 @pytest.fixture()
 def mock_search_for_robotdocsconf():
     with mock.patch(
-        'crl.devutils.doccreator.DocCreator.search_for_robotdocsconf')\
+            'crl.devutils.doccreator.DocCreator.search_for_robotdocsconf')\
             as p:
         yield p
 
@@ -371,8 +371,7 @@ def test_create_generate_robotdocs_rst_synopsis(mock_run,
                             RunResult(sphinxdocs_generation_call, 0)]
     DocCreator(robotdocs_root_folders='robotdocs', run=mock_run).create()
     assert mock_robotdocsrst.content == robotdocs_rst_expected_content(
-        library_sections=[robotdocs_rst_library_section(synopsis='synopsis')]
-        )
+        library_sections=[robotdocs_rst_library_section(synopsis='synopsis')])
 
 
 @pytest.mark.usefixtures("mock_robotdocsconf_multilibrary",
@@ -391,8 +390,7 @@ def test_create_robotdocs_rst_multilibrary(mock_run,
 
     assert (mock_robotdocsrst.content == robotdocs_rst_expected_content(
         library_sections=[robotdocs_rst_library_section(libname='library1'),
-                          robotdocs_rst_library_section(libname='library2')]
-        ))
+                          robotdocs_rst_library_section(libname='library2')]))
 
 
 @pytest.mark.usefixtures("mock_robotdocsconf_with_resource_file",
