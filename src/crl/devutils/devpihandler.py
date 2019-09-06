@@ -238,8 +238,8 @@ class DevpiHandler(object):
     def _pip_search_pkg(self, pkgname, index):
         return self.run('pip search {pkg_name} -i {index}'.format(
             pkg_name=pkgname,
-            index=index if index.endswith('/') else index+'/'),
-                        ignore_codes=[23]).stdout.split('\n')
+            index=index if index.endswith('/') else index + '/'),
+            ignore_codes=[23]).stdout.split('\n')
 
     def latest_pypi_version(self, pkg_name=None, pypi_index=None):
         """

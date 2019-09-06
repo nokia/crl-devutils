@@ -35,21 +35,21 @@ __copyright__ = 'Copyright (C) 2019, Nokia'
 def mock_prepare_package(request):
     return create_mpatch(mock.patch(
         'crl.devutils.packagehandler.PackageHandler._prepare_package'),
-                         request)
+        request)
 
 
 @pytest.fixture(scope='function')
 def mock_finalize_package(request):
     return create_mpatch(mock.patch(
         'crl.devutils.packagehandler.PackageHandler._finalize_package'),
-                         request)
+        request)
 
 
 @pytest.fixture(scope='function')
 def mock_verify_clean(request):
     return create_mpatch(mock.patch(
         'crl.devutils.packagehandler.PackageHandler.verify_clean'),
-                         request)
+        request)
 
 
 @pytest.fixture(scope='function')
@@ -344,8 +344,7 @@ def test_publish_tags_if_tag_needed_and_version_not_in_index(
 
     packagehandler.devpihandler.latest_pypi_version.return_value = pypiver
     packagehandler.publish('index1', 'index2', tag_if_needed=tag_if_needed)
-    tag_called = True if (
-        pypiver != packagehandler.version and tag_if_needed) else False
+    tag_called = pypiver != packagehandler.version and tag_if_needed
     assert packagehandler.githandler.tag_release.call_count == (
         1 if tag_called else 0)
 
@@ -353,5 +352,6 @@ def test_publish_tags_if_tag_needed_and_version_not_in_index(
 @pytest.mark.parametrize('pypiver', ['0.1', '1.0'])
 def test_is_version_in_index(packagehandler, pypiver):
     packagehandler.devpihandler.latest_pypi_version.return_value = pypiver
-    assert packagehandler._is_version_in_index('index') == (
-        True if pypiver == packagehandler.version else False)
+    expected_is_version_in_index = pypiver == packagehandler.version
+    actual_is_version_in_index = packagehandler._is_version_in_index('index')
+    assert actual_is_version_in_index == expected_is_version_in_index

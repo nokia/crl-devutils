@@ -55,6 +55,7 @@ def mock_index_exists(request):
         'crl.devutils.devpiindex.DevpiIndex.index_exists',
         return_value=False), request)
 
+
 MockVirtualenvrunner = namedtuple('MocVirtualenvrunner', ['init', 'handle'])
 
 
@@ -129,7 +130,7 @@ def test_test_with_docs(mock_run,
                    clientarg='clientarg') as t:
         t.test()
     index = index_name if index_name else ''
-    pip_index_url = 'https://host/username/'+index+'/+simple/'
+    pip_index_url = 'https://host/username/' + index + '/+simple/'
     if not novirtualenv:
         mock_virtualenvrunner.init.assert_called_once_with(
             pip_index_url=pip_index_url,

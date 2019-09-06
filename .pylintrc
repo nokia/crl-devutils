@@ -67,7 +67,7 @@ confidence=
 # --disable=W"
 disable=missing-docstring,anomalous-backslash-in-string,redefined-outer-name,
     attribute-defined-outside-init,exec-used,fixme,redefined-builtin,
-    duplicate-code
+    duplicate-code, useless-object-inheritance, bad-continuation
 
 [REPORTS]
 

@@ -252,8 +252,8 @@ def test_latest_pypi_version(mock_run,
     assert devpihandler.latest_pypi_version() == version
     mock_run.assert_called_once_with('pip search {pkgname} -i {index}'.format(
         pkgname=devpihandler.packagehandler.name,
-        index=index if index.endswith('/') else index+'/'),
-                                     ignore_codes=[23])
+        index=index if index.endswith('/') else index + '/'),
+        ignore_codes=[23])
 
 
 @pytest.mark.parametrize('index', [
@@ -265,17 +265,17 @@ def test_latest_pypi_version_with_long_short_urls(mock_run,
     devpihandler.packagehandler.name = 'name'
     devpihandler.set_index('https://host/user/index')
     devpihandler.latest_pypi_version('name', index)
-    long_index = index if index.startswith('https') else 'https://host/'+index
+    long_index = index if index.startswith('https') else 'https://host/' + index  # noqa: E501
     mock_run.assert_called_once_with('pip search name -i {index}'.format(
-        index=long_index if long_index.endswith('/') else long_index+'/'),
-                                     ignore_codes=[23])
+        index=long_index if long_index.endswith('/') else long_index + '/'),
+        ignore_codes=[23])
 
 
 @pytest.mark.parametrize('index', [
     'https://host/user1/index1', 'user2/index2'])
 def test_get_long_url(devpihandler, index):
     devpihandler.set_index('https://host/user/index')
-    long_index = index if index.startswith('https') else 'https://host/'+index
+    long_index = index if index.startswith('https') else 'https://host/' + index  # noqa: E501
     assert devpihandler._get_long_url(index) == long_index
 
 
@@ -301,7 +301,7 @@ def test_create_index(devpihandler, mock_login, mock_logoff,
     assert mock_logoff.call_count == 1
     mock_create_devpiindex.create.assert_called_once_with(
         run=devpihandler.run,
-        baseindex='user/index'+','+otherbases,
+        baseindex='user/index' + ',' + otherbases,
         baseurl='https://host',
         index_name='newindex',
         username='username',
