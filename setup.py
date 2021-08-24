@@ -25,6 +25,7 @@ setup(
     author_email='petri.huovinen@nokia.com',
     description='Common Robot Libraries development and CI tools',
     install_requires=['invoke==0.12.2',
+                      'check-manifest==0.41',
                       'devpi-client==4.1.0',
                       'detox==0.15',
                       'tox==3.4.0',

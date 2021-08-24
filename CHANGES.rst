@@ -3,6 +3,12 @@
 CHANGES
 =======
 
+1.2.5
+-----
+
+- Require check-manifest==0.41 to avoid 'devpi upload' error caused
+  by backwards incompatible change
+
 1.2.4
 -----
 
