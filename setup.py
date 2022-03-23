@@ -48,7 +48,7 @@ setup(
                       'Jinja2==3.0.3;python_version>"3.0"',
                       'robotframework',
                       'virtualenvrunner',
-                      'virtualenv==16.3.0',
+                      'virtualenv==20.13.4',
                       'configparser'],
     long_description=read('README.rst'),
     license='BSD 3-Clause',
