@@ -50,7 +50,7 @@ class _TmpIndex(DevpiIndex):
 
     def test(self):
         self._upload()
-        self.run('devpi test {spec}{clientarg} --detox'.format(
+        self.run('devpi test {spec}{clientarg}'.format(
             spec=self.spec,
             clientarg=self.clientarg))
 

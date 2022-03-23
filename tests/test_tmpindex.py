@@ -89,7 +89,7 @@ def test_test_run_without_docs(mock_run,
     assert mock_run.mock_calls == [
         mock.call('devpi upload{clientarg}'.format(
             clientarg=tmpindex.clientarg)),
-        mock.call('devpi test name==0.1{clientarg} --detox'.format(
+        mock.call('devpi test name==0.1{clientarg}'.format(
             clientarg=tmpindex.clientarg))]
 
 
