@@ -39,7 +39,6 @@ setup(
     install_requires=['invoke==0.12.2',
                       'check-manifest==0.41',
                       'devpi-client==4.1.0',
-                      'detox==0.15',
                       'tox==3.4.0',
                       'future',
                       'six',
