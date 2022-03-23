@@ -3,6 +3,14 @@
 CHANGES
 =======
 
+1.2.6
+-----
+
+- Support for Python versions 3.8, 3.9 and 3.10
+- Use importlib in setup.py for Python 3.x (instead of deprecated imp module)
+- Require Jinja2==3.0.3 to avoid errors caused by removal of 'contextfunction'
+- Require pytest-flake8==1.0.7 and lazy-object-proxy==1.6.0 for Python 2.7 tests
+
 1.2.5
 -----
 
