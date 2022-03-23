@@ -1,5 +1,5 @@
 import os
-import imp
+import sys
 from setuptools import setup, find_packages
 
 __copyright__ = 'Copyright (C) 2019, Nokia'
@@ -9,8 +9,20 @@ VERSIONFILE = os.path.join(
     'src', 'crl', 'devutils', '_version.py')
 
 
+def import_module(name, path):
+    if sys.version_info.major == 2:
+        import imp
+        return imp.load_source(name, path)
+
+    import importlib
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def get_version():
-    return imp.load_source('_version', VERSIONFILE).get_version()
+    return import_module('_version', VERSIONFILE).get_version()
 
 
 def read(fname):
