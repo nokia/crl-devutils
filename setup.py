@@ -2,7 +2,7 @@ import os
 import sys
 from setuptools import setup, find_packages
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2022, Nokia'
 
 VERSIONFILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -59,6 +59,10 @@ setup(
                  'Programming Language :: Python :: 3',
                  'Programming Language :: Python :: 3.5',
                  'Programming Language :: Python :: 3.6',
+                 'Programming Language :: Python :: 3.7',
+                 'Programming Language :: Python :: 3.8',
+                 'Programming Language :: Python :: 3.9',
+                 'Programming Language :: Python :: 3.10',
                  'Topic :: Software Development'],
     keywords='robotframework testing testautomation acceptancetesting atdd bdd',
     url='https://github.com/nokia/crl-devutils',
