@@ -208,19 +208,21 @@ def test_set_version(mock_create_packagehandler,
     assert err == ''
 
 
-@pytest.mark.parametrize('testindex,save_tests_to,pathtoversionfile',
-                         [(None, None, PathToVersionFile()),
+@pytest.mark.parametrize('testindex,save_tests_to,pathtoversionfile,toxargs',
+                         [(None, None, PathToVersionFile(), None),
                           ('test', 'save_tests_to',
-                           PathToVersionFile('path'))])
+                           PathToVersionFile('path'), '--parallel all')])
 def test_test(mock_create_packagehandler,
               testindex,
               save_tests_to,
-              pathtoversionfile):
+              pathtoversionfile,
+              toxargs):
     test(baseindex='index', testindex=testindex, credentials_file='creds',
-         save_tests_to=save_tests_to, **pathtoversionfile.kwargs)
+         save_tests_to=save_tests_to, toxargs=toxargs,
+         **pathtoversionfile.kwargs)
     mock_create_packagehandler.handler.test.assert_called_once_with(
         base_index='index', test_index=testindex, credentials_file='creds',
-        save_tests_to=save_tests_to)
+        save_tests_to=save_tests_to, toxargs=toxargs)
 
 
 def test_test_without_virtualenv(mock_create_packagehandler):
