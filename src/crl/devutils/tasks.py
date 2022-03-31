@@ -310,7 +310,8 @@ def delete_index(index, credentials_file=None, verbose=False):
 @task
 def test(baseindex, testindex=None, credentials_file=None,
          save_tests_to=None, virtualenv=True,
-         pathtoversionfile=None, verbose=False):
+         pathtoversionfile=None, verbose=False,
+         toxargs=None):
     """ Uploads contents of current workspace to devpi and runs tox tests.
 
     Args:
@@ -328,6 +329,8 @@ def test(baseindex, testindex=None, credentials_file=None,
         virtualenv: Create and run the task in a new temporary virtualenv.
         pathtoversionfile: Alternative relative path to version file.
         verbose: Display task execution in more detail.
+        toxargs: Extra command line arguments for tox. e.g.
+                 --toxargs="--parallel all"
     """
     kwargs = {} if virtualenv else {'novirtualenv': True}
     ph = create_packagehandler(verbose=verbose,
@@ -335,7 +338,8 @@ def test(baseindex, testindex=None, credentials_file=None,
                                **kwargs)
     ph.test(base_index=baseindex, test_index=testindex,
             credentials_file=credentials_file,
-            save_tests_to=save_tests_to)
+            save_tests_to=save_tests_to,
+            toxargs=toxargs)
 
 
 @task

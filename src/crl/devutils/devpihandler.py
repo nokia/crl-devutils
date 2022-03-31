@@ -107,16 +107,17 @@ class DevpiHandler(object):
         with self._session():
             self._publish(index)
 
-    def test(self, test_index=None):
+    def test(self, test_index=None, toxargs=None):
         """
         Test and upload results and docs to the given index.
         If no index is specified, uses a temporary index.
 
         Args:
           test_index: Index name to use for testing, specified as NAME.
+          toxargs: extra command line arguments for tox.
         """
         with self._session():
-            self._test_via_tmpindex(test_index)
+            self._test_via_tmpindex(test_index, toxargs)
 
     def create_index(self, name, baseindex, otherbase=None,
                      credentials_file=None):
@@ -292,7 +293,7 @@ class DevpiHandler(object):
         index.use_index()
         index.push(pkgspec, short_index_name)
 
-    def _test_via_tmpindex(self, index):
+    def _test_via_tmpindex(self, index, toxargs):
         with _TmpIndex(run=self.run,
                        packagehandler=self.packagehandler,
                        baseindex=self.userindex,
@@ -300,4 +301,4 @@ class DevpiHandler(object):
                        index_name=index,
                        username=self.username,
                        clientarg=self._clientarg) as tmpindex:
-            tmpindex.test()
+            tmpindex.test(toxargs=toxargs)

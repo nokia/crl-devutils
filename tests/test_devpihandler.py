@@ -133,7 +133,8 @@ def test_test(devpihandler,
         index_name=index,
         clientarg=' --clientdir {expected_clientdir}'.format(
             expected_clientdir=randomtmpdir))
-    assert mock_tmpindex.handle.test.call_count == 1
+    mock_tmpindex.handle.test.assert_called_once_with(
+        toxargs=None)
 
 
 @pytest.mark.parametrize('index,expected_url', [

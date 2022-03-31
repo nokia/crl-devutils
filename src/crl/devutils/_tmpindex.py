@@ -48,11 +48,18 @@ class _TmpIndex(DevpiIndex):
         if self._default_cleanup:
             self.delete_index()
 
-    def test(self):
+    def test(self, toxargs=None):
         self._upload()
-        self.run('devpi test {spec}{clientarg}'.format(
+        self.run('devpi test {spec}{clientarg}{toxargs}'.format(
             spec=self.spec,
-            clientarg=self.clientarg))
+            clientarg=self.clientarg,
+            toxargs=self._get_formatted_toxargs(toxargs)))
+
+    @staticmethod
+    def _get_formatted_toxargs(toxargs):
+        if toxargs is None:
+            return ''
+        return ' --tox-args "{toxargs}"'.format(toxargs=toxargs)
 
     def _upload(self):
         self.run('devpi upload{clientarg}'.format(
