@@ -3,6 +3,12 @@
 CHANGES
 =======
 
+1.3.0
+-----
+
+- Support parallel test execution via new CLI argument for 'crl test': '--toxargs'.
+  This is replacing old solution based on 'detox'
+
 1.2.6
 -----
 
