@@ -36,7 +36,8 @@ setup(
     author='Petri Huovinen',
     author_email='petri.huovinen@nokia.com',
     description='Common Robot Libraries development and CI tools',
-    install_requires=['invoke==0.12.2',
+    install_requires=['invoke==0.12.2;python_version<"3.11"',
+                      'invoke==2.2.0;python_version>="3.11"',
                       'check-manifest==0.41',
                       'devpi-client==5.2.3',
                       'tox==3.24.5',
@@ -70,5 +71,5 @@ setup(
     namespace_packages=['crl'],
     entry_points={
         'console_scripts': [
-            'crl = crl.devutils.tasks:main']}
+            'crl = crl.devutils.main:program.run']}
 )

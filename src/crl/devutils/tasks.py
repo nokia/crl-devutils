@@ -5,7 +5,7 @@ import sys
 from collections import namedtuple
 from contextlib import contextmanager
 from invoke import task
-from invoke.main import program
+from invoke import Program, Collection
 from crl.devutils import (
     versionhandler,
     githandler,
@@ -110,7 +110,7 @@ def create_devpihandler(verbose=False):
 
 
 @task(default=True)
-def help():
+def helpz(c):
     """Show help, basically an alias for --help.
 
     This task can be removed once the fix to this issue is released:
@@ -121,7 +121,7 @@ def help():
 
 
 @task
-def tag_release(version, libname=None, push=True, verbose=False,
+def tag_release(c, version, libname=None, push=True, verbose=False,
                 pathtoversionfile=None):
     """Tag specified release.
 
@@ -143,7 +143,7 @@ def tag_release(version, libname=None, push=True, verbose=False,
 
 
 @task
-def tag_setup_version(verbose=False):
+def tag_setup_version(c, verbose=False):
     """Tag specified release.
 
     Creates tag of version in setup and pushes changes.
@@ -155,7 +155,7 @@ def tag_setup_version(verbose=False):
 
 
 @task
-def set_version(version, push=False, libname=None,
+def set_version(c, version, push=False, libname=None,
                 pathtoversionfile=None, verbose=False):
     """Set version in ./src/crl/<libname>/_version.py`.
 
@@ -190,7 +190,7 @@ def set_version(version, push=False, libname=None,
 
 
 @task
-def clean(remove_dist=True, create_dirs=False):
+def clean(c, remove_dist=True, create_dirs=False):
     """Clean workspace.
 
     By default deletes 'dist' directory and removes '*.pyc'
@@ -213,7 +213,7 @@ def clean(remove_dist=True, create_dirs=False):
 
 
 @task
-def sdist(deploy=False, remove_dist=False):
+def sdist(c, deploy=False, remove_dist=False):
     """Create source distribution.
 
     Args:
@@ -233,7 +233,7 @@ def announce():
 
 
 @task
-def create_setup(libname=None, add_to_git=True):
+def create_setup(c, libname=None, add_to_git=True):
     """Create initial setup.py into current directory from library name.
     The module setup will define path to version file
     by joining it with src/crl/libname/_version.py.
@@ -260,7 +260,7 @@ def get_setup_path():
 
 
 @task
-def create_index(index, baseindex, additional_index=None,
+def create_index(c, index, baseindex, additional_index=None,
                  credentials_file=None, verbose=False):
     """
     Create an index with given bases
@@ -287,7 +287,7 @@ def create_index(index, baseindex, additional_index=None,
 
 
 @task
-def delete_index(index, credentials_file=None, verbose=False):
+def delete_index(c, index, credentials_file=None, verbose=False):
     """
     Delete an index
 
@@ -308,7 +308,7 @@ def delete_index(index, credentials_file=None, verbose=False):
 
 
 @task
-def test(baseindex, testindex=None, credentials_file=None,
+def test(c, baseindex, testindex=None, credentials_file=None,
          save_tests_to=None, virtualenv=True,
          pathtoversionfile=None, verbose=False,
          toxargs=None):
@@ -343,7 +343,7 @@ def test(baseindex, testindex=None, credentials_file=None,
 
 
 @task
-def publish(srcindex, destindex, credentials_file=None, tag_if_needed=False,
+def publish(c, srcindex, destindex, credentials_file=None, tag_if_needed=False,
             tag_branch='master', verbose=False):
     """*DEPRECATED* Publish version from a given index to another index.
 
@@ -375,7 +375,7 @@ def publish(srcindex, destindex, credentials_file=None, tag_if_needed=False,
 
 
 @task
-def create_docs(robotdocs_root_folders='robotdocs', verbose=False):
+def create_docs(c, robotdocs_root_folders='robotdocs', verbose=False):
     """ Create both Robot Framework and Sphinx documentation.
 
     If 'robotdocsconf.py' exists in root folders then Robot
@@ -432,7 +432,7 @@ def create_docs(robotdocs_root_folders='robotdocs', verbose=False):
 
 
 @task
-def create_robotdocs(robotdocs_root_folders='robotdocs', verbose=False):
+def create_robotdocs(c, robotdocs_root_folders='robotdocs', verbose=False):
     """ Create only Robot Framework ReST documentation.
 
     If 'robotdocsconf.py' exists in root folders then Robot
@@ -521,7 +521,8 @@ def error_handling():
         sys.exit(1)
 
 
-def main():
+def mainz():
+
     # Hack sys.argv because invoke.Program is not working as a library in
     # version 0.12. See discussion in
     # https://github.com/pyinvoke/invoke/pull/285.
