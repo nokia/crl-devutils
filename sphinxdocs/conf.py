@@ -21,7 +21,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 from crl.devutils._version import get_version
@@ -73,12 +73,12 @@ release = version
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = ['robotdocs.rst']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -105,6 +105,7 @@ html_theme_options = {'page_width': '90%'}
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = ['_static']
 
+html_extra_path = ['../robotdocs']
 
 # -- Options for HTMLHelp output ------------------------------------------
 
