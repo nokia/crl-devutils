@@ -44,7 +44,7 @@ setup(
                       'six',
                       'rstcheck',
                       'setuptools==69.2.0;python_version>="3.10"',
-                      'sphinx',
+                      'sphinx<7.0',
                       'Jinja2==3.0.3;python_version>"3.0"',
                       'robotframework',
                       'virtualenvrunner',
