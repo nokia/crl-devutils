@@ -2,7 +2,7 @@ import os
 import sys
 from setuptools import setup, find_packages
 
-__copyright__ = 'Copyright (C) 2019-2022, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 VERSIONFILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -43,7 +43,8 @@ setup(
                       'future',
                       'six',
                       'rstcheck',
-                      'sphinx',
+                      'setuptools==69.2.0;python_version>="3.10"',
+                      'sphinx<7.0',
                       'Jinja2==3.0.3;python_version>"3.0"',
                       'robotframework',
                       'virtualenvrunner',

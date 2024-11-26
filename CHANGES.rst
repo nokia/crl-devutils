@@ -1,7 +1,12 @@
-.. Copyright (C) 2019, Nokia
+.. Copyright (C) 2019-2024, Nokia
 
 CHANGES
 =======
+
+1.3.1
+-----
+
+- Support running 'crl test' in Python 3.10 environment
 
 1.3.0
 -----
