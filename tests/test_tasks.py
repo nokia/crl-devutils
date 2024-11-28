@@ -43,7 +43,7 @@ from .fixtures import (  # pylint: disable=unused-import
     mock_devpihandler)
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 MockHandlerFactory = namedtuple('MockHandlerFactory', [
@@ -208,21 +208,22 @@ def test_set_version(mock_create_packagehandler,
     assert err == ''
 
 
-@pytest.mark.parametrize('testindex,save_tests_to,pathtoversionfile,toxargs',
-                         [(None, None, PathToVersionFile(), None),
+@pytest.mark.parametrize('testindex,save_tests_to,pathtoversionfile,toxargs,select',
+                         [(None, None, PathToVersionFile(), None, None),
                           ('test', 'save_tests_to',
-                           PathToVersionFile('path'), '--parallel all')])
+                           PathToVersionFile('path'), '--parallel all', '-py3-none-any.whl')])
 def test_test(mock_create_packagehandler,
               testindex,
               save_tests_to,
               pathtoversionfile,
-              toxargs):
+              toxargs,
+              select):
     test(baseindex='index', testindex=testindex, credentials_file='creds',
-         save_tests_to=save_tests_to, toxargs=toxargs,
+         save_tests_to=save_tests_to, toxargs=toxargs, select=select,
          **pathtoversionfile.kwargs)
     mock_create_packagehandler.handler.test.assert_called_once_with(
         base_index='index', test_index=testindex, credentials_file='creds',
-        save_tests_to=save_tests_to, toxargs=toxargs)
+        save_tests_to=save_tests_to, toxargs=toxargs, select=select)
 
 
 def test_test_without_virtualenv(mock_create_packagehandler):

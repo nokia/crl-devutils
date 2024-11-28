@@ -3,6 +3,13 @@
 CHANGES
 =======
 
+1.4.0
+-----
+
+- Support selecting release files for which 'crl test' is running tests via new CLI
+  argument '--select'. This makes possible testing of non-universal wheels besides
+  source distributions or selecting only one of them.
+
 1.3.1
 -----
 
