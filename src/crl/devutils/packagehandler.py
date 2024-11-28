@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from crl.devutils.tmpdir import TmpDir
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 class MismatchOfTagAndVersionfileVersion(Exception):
@@ -152,7 +152,8 @@ class PackageHandler(object):
              test_index=None,
              credentials_file=None,
              save_tests_to=None,
-             toxargs=None):
+             toxargs=None,
+             select=None):
         """
         Runs tests and uploads the results and docs to a given index.
         If no index is given, a temporary index which is created for
@@ -168,6 +169,9 @@ class PackageHandler(object):
             generated during testing to this path.
           toxargs: Extra command line arguments passsed to tox, e.g.
             "--parallel all"
+          select: Selector for release files to be tested. This is
+            a regular expression passed to 'devpi test' as '--seclect'
+            argument, for example "(-py3-none-any.whl|.tar.gz)"
 
         Raises:
           ChangeFileVersionCheckFailed: Change file version doesn't
@@ -179,7 +183,7 @@ class PackageHandler(object):
             if credentials_file:
                 self.devpihandler.set_credentials_file(credentials_file)
             with self._prepared_package():
-                self.devpihandler.test(test_index, toxargs)
+                self.devpihandler.test(test_index, toxargs, select)
 
     def publish(self,
                 srcindex,
