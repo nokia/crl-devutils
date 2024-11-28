@@ -34,7 +34,7 @@ from crl.devutils.githandler import UncleanGitRepository
 from crl.devutils.doccreator import FailedToCreateDocs
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 MODULEDIR = os.path.dirname(os.path.abspath(__file__))
 SETUP_TEMPLATE = """
@@ -308,10 +308,10 @@ def delete_index(index, credentials_file=None, verbose=False):
 
 
 @task
-def test(baseindex, testindex=None, credentials_file=None,
+def test(baseindex, testindex=None, credentials_file=None,  # pylint: disable=too-many-arguments
          save_tests_to=None, virtualenv=True,
          pathtoversionfile=None, verbose=False,
-         toxargs=None):
+         toxargs=None, select=None):
     """ Uploads contents of current workspace to devpi and runs tox tests.
 
     Args:
@@ -331,6 +331,9 @@ def test(baseindex, testindex=None, credentials_file=None,
         verbose: Display task execution in more detail.
         toxargs: Extra command line arguments for tox. e.g.
                  --toxargs="--parallel all"
+        select: Selector for release files to be tested. This is
+                a regular expression passed to 'devpi test' as '--select'
+                argument, for example "(-py3-none-any.whl|.tar.gz)"
     """
     kwargs = {} if virtualenv else {'novirtualenv': True}
     ph = create_packagehandler(verbose=verbose,
@@ -339,7 +342,8 @@ def test(baseindex, testindex=None, credentials_file=None,
     ph.test(base_index=baseindex, test_index=testindex,
             credentials_file=credentials_file,
             save_tests_to=save_tests_to,
-            toxargs=toxargs)
+            toxargs=toxargs,
+            select=select)
 
 
 @task

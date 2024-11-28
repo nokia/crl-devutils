@@ -8,7 +8,7 @@ from crl.devutils._tmpindex import _TmpIndex
 from crl.devutils.utils import get_randomstring
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 class MalformedURL(Exception):
@@ -107,7 +107,7 @@ class DevpiHandler(object):
         with self._session():
             self._publish(index)
 
-    def test(self, test_index=None, toxargs=None):
+    def test(self, test_index=None, toxargs=None, select=None):
         """
         Test and upload results and docs to the given index.
         If no index is specified, uses a temporary index.
@@ -115,9 +115,10 @@ class DevpiHandler(object):
         Args:
           test_index: Index name to use for testing, specified as NAME.
           toxargs: extra command line arguments for tox.
+          select: Selector for the tests to run.
         """
         with self._session():
-            self._test_via_tmpindex(test_index, toxargs)
+            self._test_via_tmpindex(test_index, toxargs, select)
 
     def create_index(self, name, baseindex, otherbase=None,
                      credentials_file=None):
@@ -293,7 +294,7 @@ class DevpiHandler(object):
         index.use_index()
         index.push(pkgspec, short_index_name)
 
-    def _test_via_tmpindex(self, index, toxargs):
+    def _test_via_tmpindex(self, index, toxargs, select):
         with _TmpIndex(run=self.run,
                        packagehandler=self.packagehandler,
                        baseindex=self.userindex,
@@ -301,4 +302,4 @@ class DevpiHandler(object):
                        index_name=index,
                        username=self.username,
                        clientarg=self._clientarg) as tmpindex:
-            tmpindex.test(toxargs=toxargs)
+            tmpindex.test(toxargs=toxargs, select=select)
