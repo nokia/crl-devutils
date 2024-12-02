@@ -6,7 +6,7 @@ from crl.devutils.doccreator import DocCreator
 from crl.devutils.devpiindex import DevpiIndex
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 class _TmpIndex(DevpiIndex):
@@ -48,18 +48,25 @@ class _TmpIndex(DevpiIndex):
         if self._default_cleanup:
             self.delete_index()
 
-    def test(self, toxargs=None):
+    def test(self, toxargs=None, select=None):
         self._upload()
-        self.run('devpi test {spec}{clientarg}{toxargs}'.format(
+        self.run('devpi test {spec}{clientarg}{toxargs}{select}'.format(
             spec=self.spec,
             clientarg=self.clientarg,
-            toxargs=self._get_formatted_toxargs(toxargs)))
+            toxargs=self._get_formatted_toxargs(toxargs),
+            select=self._get_formatted_select(select)))
 
     @staticmethod
     def _get_formatted_toxargs(toxargs):
         if toxargs is None:
             return ''
         return ' --tox-args "{toxargs}"'.format(toxargs=toxargs)
+
+    @staticmethod
+    def _get_formatted_select(select):
+        if select is None:
+            return ''
+        return ' --select "{select}"'.format(select=select)
 
     def _upload(self):
         self.run('devpi upload{clientarg}'.format(

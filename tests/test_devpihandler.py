@@ -16,7 +16,7 @@ from .fixtures import (  # pylint: disable=unused-import
 from .mockfile import MockFile
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 @pytest.fixture(scope='function')
@@ -134,7 +134,7 @@ def test_test(devpihandler,
         clientarg=' --clientdir {expected_clientdir}'.format(
             expected_clientdir=randomtmpdir))
     mock_tmpindex.handle.test.assert_called_once_with(
-        toxargs=None)
+        toxargs=None, select=None)
 
 
 @pytest.mark.parametrize('index,expected_url', [

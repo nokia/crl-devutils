@@ -28,7 +28,7 @@ from .fixtures import (  # pylint: disable=unused-import
     create_mpatch)
 
 
-__copyright__ = 'Copyright (C) 2019, Nokia'
+__copyright__ = 'Copyright (C) 2019-2024, Nokia'
 
 
 @pytest.fixture(scope='function')
@@ -196,7 +196,7 @@ def test_test_with_index_name(packagehandler,
                               mock_verify_clean,
                               test_index):
     packagehandler.test(base_index='index', test_index=test_index)
-    packagehandler.devpihandler.test.assert_called_once_with(test_index, None)
+    packagehandler.devpihandler.test.assert_called_once_with(test_index, None, None)
     assert packagehandler.devpihandler.test.call_count == 1
     assert mock_prepare_package.call_count == 1
     assert mock_verify_clean.call_count == 0
