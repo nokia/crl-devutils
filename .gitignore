@@ -12,3 +12,5 @@ coverage.xml
 junit.xml
 src/crl_devutils.egg-info/
 .pytest_cache/*
+robotdocs/crl.devutils.tmpdir.TmpDir.html
+sphinxdocs/robotdocs.rst
